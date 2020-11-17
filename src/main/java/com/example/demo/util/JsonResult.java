@@ -1,7 +1,14 @@
 package com.example.demo.util;
 
-import net.sf.json.JSONObject;
+import java.io.Serializable;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 /** 
  * @author 作者 zuoruibo: 
  * @date 创建时间：2020年11月13日 上午10:16:07 
@@ -10,59 +17,93 @@ import net.sf.json.JSONObject;
  * @since 
  * @return 
  */
-public class JsonResult {
-	private String code;
-	private String message;
-	private Object data;
+@Data
+@NoArgsConstructor
+@ApiModel(description = "通用参数")
+public class JsonResult<T> implements Serializable {
 
-	public JsonResult() {
-		this.setCode(ResultCode.SUCCESS);
-		this.setMessage(ResultCode.SUCCESS.msg());
+	@ApiModelProperty(value = "响应业务状态", required = true, position = 1)
+	private Integer status;
+
+	@ApiModelProperty(value = "响应消息", required = true, position = 2)
+	private String msg;
+
+	@ApiModelProperty(value = "响应中的数据", required = true, position = 3)
+	private T data;
+
+	public static JsonResult build(Integer status, String msg, Object data) {
+		return new JsonResult(status, msg, data);
 	}
 
-	public JsonResult(ResultCode code) {
-		this.setCode(code);
-		this.setMessage(code.msg());
+	public static JsonResult fromJSONObject(JSONObject jsonObject) {
+		if (jsonObject != null) {
+			if (jsonObject.containsKey("code")) {
+				Integer status = jsonObject.getInteger("code");
+				if (status == 0)
+					status = CodeEnums.SUCCESS.getCode();
+				if (status == 1)
+					status = CodeEnums.ERROR.getCode();
+				String msg = jsonObject.getString("msg");
+				Object data = jsonObject.get("data");
+				return new JsonResult(status, msg, data);
+			} else {
+				return new JsonResult(CodeEnums.ERROR.getCode(), "不正确的数据格式", null);
+			}
+
+		} else {
+			return new JsonResult(CodeEnums.SERVICE_DOWN.getCode(), CodeEnums.SERVICE_DOWN.getMsg(), null);
+		}
+
 	}
 
-	public JsonResult(ResultCode code, String data) {
-		this.setCode(code);
-		this.setMessage(code.msg());
-		this.setData(data);
+	public static JsonResult ok(Object data) {
+		return new JsonResult(data);
 	}
 
-	public JsonResult(ResultCode code, Object data) {
-		this.setCode(code);
-		this.setMessage(code.msg());
-		this.setData(data);
+	public static JsonResult ok() {
+		return new JsonResult(null);
 	}
 
-	public String getCode() {
-		return code;
+	public static JsonResult build(Integer status, String msg) {
+		return new JsonResult(status, msg, null);
 	}
 
-	public void setCode(ResultCode code) {
-		this.code = code.val();
+	public static JsonResult build(CodeEnums codeEnums) {
+		return new JsonResult(codeEnums.getCode(), codeEnums.getMsg(), null);
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
+	public JsonResult(Integer status, String msg, T data) {
+		this.status = status;
+		this.msg = msg;
 		this.data = data;
 	}
 
-	public String toJsonString() {
-		JSONObject json = JSONObject.fromObject(this);
-		return json.toString();
+	public JsonResult(T data) {
+		this.status = CodeEnums.SUCCESS.getCode();
+		this.msg = "OK";
+		this.data = data;
 	}
+
+	@JSONField(serialize = false)
+	@JsonIgnore
+	@ApiModelProperty(hidden = true)
+	public boolean isSuccess() {
+		return this.status.intValue() == CodeEnums.SUCCESS.getCode().intValue();
+	}
+
+	@JSONField(serialize = false)
+	@JsonIgnore
+	@ApiModelProperty(hidden = true)
+	public T getDataSuc() {
+		if (isSuccess()) {
+			return this.data;
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "JsonResult{" + "status=" + status + ", msg='" + msg + '\'' + ", data=" + data + '}';
+	}
+
 }

@@ -24,3 +24,15 @@
 2020-11-17 16:34:19,307 [main] [com.example.demo.SpringbootSwaggerApplication] [DEBUG] (StartupInfoLogger.java:53)- Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
 2020-11-17 16:34:19,309 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (SpringApplication.java:675)- No active profile set, falling back to default profiles: default
 2020-11-17 16:34:21,440 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (StartupInfoLogger.java:59)- Started SpringbootSwaggerApplication in 2.454 seconds (JVM running for 4.281)
+2020-11-17 17:52:07,214 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (StartupInfoLogger.java:50)- Starting SpringbootSwaggerApplication on DESKTOP-MPF9R39 with PID 15296 (E:\workspace-spring-tool-suite-4-4.1.2.RELEASE\springboot-swagger\target\classes started by zuoruibo in E:\workspace-spring-tool-suite-4-4.1.2.RELEASE\springboot-swagger)
+2020-11-17 17:52:07,217 [main] [com.example.demo.SpringbootSwaggerApplication] [DEBUG] (StartupInfoLogger.java:53)- Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2020-11-17 17:52:07,218 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (SpringApplication.java:675)- No active profile set, falling back to default profiles: default
+2020-11-17 17:52:09,159 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (StartupInfoLogger.java:59)- Started SpringbootSwaggerApplication in 2.264 seconds (JVM running for 3.967)
+2020-11-17 17:53:16,984 [http-nio-9090-exec-9] [com.example.demo.config.MyHttpInterceptor] [INFO] (MyHttpInterceptor.java:48)- 请求参数, url: http://localhost:9090/hello, method: GET, params: null
+2020-11-17 17:53:16,985 [http-nio-9090-exec-9] [com.example.demo.rest.InitRest] [INFO] (InitRest.java:35)- hello
+2020-11-17 17:54:46,367 [http-nio-9090-exec-9] [com.example.demo.config.MyHttpInterceptor] [INFO] (MyHttpInterceptor.java:48)- 请求参数, url: http://localhost:9090/doc.html, method: GET, params: null
+2020-11-17 17:59:01,302 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (StartupInfoLogger.java:50)- Starting SpringbootSwaggerApplication on DESKTOP-MPF9R39 with PID 19288 (E:\workspace-spring-tool-suite-4-4.1.2.RELEASE\springboot-swagger\target\classes started by zuoruibo in E:\workspace-spring-tool-suite-4-4.1.2.RELEASE\springboot-swagger)
+2020-11-17 17:59:01,305 [main] [com.example.demo.SpringbootSwaggerApplication] [DEBUG] (StartupInfoLogger.java:53)- Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2020-11-17 17:59:01,306 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (SpringApplication.java:675)- No active profile set, falling back to default profiles: default
+2020-11-17 17:59:03,459 [main] [com.example.demo.SpringbootSwaggerApplication] [INFO] (StartupInfoLogger.java:59)- Started SpringbootSwaggerApplication in 2.458 seconds (JVM running for 4.265)
+2020-11-17 17:59:30,124 [http-nio-9090-exec-1] [com.example.demo.config.MyHttpInterceptor] [INFO] (MyHttpInterceptor.java:48)- 请求参数, url: http://localhost:9090/doc.html, method: GET, params: null

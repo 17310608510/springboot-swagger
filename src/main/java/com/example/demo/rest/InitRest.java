@@ -41,7 +41,7 @@ public class InitRest {
 	@RequestMapping(value = "/getUserName")
 	public JsonResult getUserName(String userId) {
 		String result = "hello " + userId + "，name=张三";
-		return new JsonResult(ResultCode.SUCCESS, result);
+		return new JsonResult(result);
 	}
 
 	/**
